@@ -39,6 +39,7 @@ tweet_vect = joblib.load(svc_vect)
 
 # Load your raw data
 raw = pd.read_csv("resources/train.csv")
+raw2 = pd.read_csv("resources/train_data.csv")
 
 # The main function where we will build the actual app
 def main():
@@ -90,8 +91,7 @@ def main():
             
 
             if st.checkbox("Show sentiment value count"):
-                image2 = Image.open("resources/imgs/Sentiment.png")
-                st.image(image2)
+                st.bar_chart(data=raw2["sentiment"].value_counts(), x=None, y=None, width=220, height=320, use_container_width=True)
             
             if st.checkbox("Show raw data"):
                 job_filter = st.selectbox("Select sentiment", pd.unique(raw['sentiment']))
